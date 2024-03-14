@@ -207,7 +207,7 @@ def main():
                 apple.draw(screen)
 
             # Проверка на столкновение змейки с собой
-            if snake.position[0] in snake.position[2:]:
+            if snake.get_head_position() in snake.position[2:]:
                 snake.reset()
 
         screen.fill(BOARD_BACKGROUND_COLOR)
