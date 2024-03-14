@@ -207,9 +207,9 @@ def main():
                 apple.randomize_position()
                 apple.draw(screen)
 
-        # Проверка на столкновение змейки с собой
-        if snake.position[0] in snake.position[2:]:
-            snake.reset()
+            # Проверка на столкновение змейки с собой
+            if snake.position[0] in snake.position[2:]:
+                snake.reset()
 
         screen.fill(BOARD_BACKGROUND_COLOR)
 
