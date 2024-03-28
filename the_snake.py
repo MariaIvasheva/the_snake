@@ -139,8 +139,7 @@ class Apple(GameObject):
 
     def __init__(self, body_color=APPLE_COLOR, occupied_position=[]):
         super().__init__(body_color)
-        self.randomize_position()
-        self.occupied_position = occupied_position
+        self.randomize_position(occupied_position)
 
     def draw(self, surface):
         """Метод отрисовывает яблоко на игровой поверхности."""
@@ -197,8 +196,8 @@ def handle_keys(game_object):
 def main():
     """Основной цикл игры."""
     # Тут нужно создать экземпляры классов.
-    apple = Apple()
     snake = Snake()
+    apple = Apple(occupied_position=snake.positions)
 
     while True:
         clock.tick(SPEED)
@@ -211,10 +210,10 @@ def main():
         # Проверка столкновения с яблоком
         if snake.get_head_position() == apple.position:
             snake.length += 1
-            apple.randomize_position()
+            apple.randomize_position(snake.position)
 
         # Проверка на столкновение змейки с собой
-        elif snake.position[0] in snake.position[2:]:
+        elif snake.get_head_position() in snake.positions[2:]:
             snake.reset()
 
         screen.fill(BOARD_BACKGROUND_COLOR)
